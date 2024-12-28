@@ -1,7 +1,8 @@
 // RRD
 import { Outlet } from "react-router-dom";
-import Sidebar from "../components/SideBar";
+
 import OnlineUsers from "../components/OnlineUsers";
+import Sidebar from "../components/SideBar";
 
 function MainLayout() {
   return (
