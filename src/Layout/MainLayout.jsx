@@ -2,7 +2,7 @@
 import { Outlet } from "react-router-dom";
 
 import OnlineUsers from "../components/OnlineUsers";
-import Sidebar from "../components/SideBar";
+import Sidebar from "../components/Sidebar";
 
 function MainLayout() {
   return (
