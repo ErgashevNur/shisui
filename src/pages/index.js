@@ -6,3 +6,4 @@ export { default as Login } from "./Login";
 export { default as Register } from "./Register";
 export { default as SingleProduct } from "./SingleProduct";
 export { default as Product } from "./product";
+export { default as Create } from "./create";

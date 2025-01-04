@@ -1,9 +1,13 @@
 function Avatar({ user }) {
   return (
     <>
-      <div>
-        <img className="w-24 h-24 rounded-full" src={user.photoURL} alt="" />
-        <p className="text-black">Hello {user.dislpayName}</p>
+      <div className="flex flex-col items-center justify-center">
+        <img
+          className="w-24 mx-auto rounded-full bg-red-800"
+          src={user.photoURL}
+          alt=""
+        />
+        <p className="text-black text-xl">Hi {user.displayName}</p>
       </div>
     </>
   );

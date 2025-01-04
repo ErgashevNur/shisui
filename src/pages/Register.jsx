@@ -2,16 +2,20 @@ import React, { useContext, useEffect, useReducer, useState } from "react";
 import { Form, Link, useActionData } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useRegister } from "../hooks/useRegister";
+import { FaGoogle } from "react-icons/fa";
+import { useSignup } from "../hooks/useSignup";
+import { CiLogin } from "react-icons/ci";
 
 export const action = async ({ request }) => {
   const form = await request.formData();
-  const displayName = form.get("name");
+  const displayName = form.get("displayName");
   const email = form.get("email");
   const password = form.get("password");
   return { displayName, email, password };
 };
 
 function Register() {
+  const { signupWithGoogle } = useSignup();
   const [password, setPassword] = useState("");
   const [investigation, setinvestigation] = useState("");
 
@@ -33,16 +37,20 @@ function Register() {
     setinvestigation(newPassword);
   };
 
-  const containsLetter = /[a-zA-Z]/.test(password);
   const handleButtonClick = () => {
+    const containsLetter = /[a-zA-Z]/.test(password, investigation);
     if (password.length < 6 || investigation.length < 6) {
       toast.warn("Parol 6 xonalik bo'lishi kerak");
+    } else {
+      toast.success("Parollar to'g'ri");
     }
     if (!containsLetter) {
-      toast.warn("Parolingizga [a-zA-Z] hariflardan ham foydalaning.");
+      toast.warn("Parolingizga [a-z, A-Z] hariflardan ham foydalaning!");
       return;
+    } else {
+      toast.success("Parolda harflardan mavjud");
     }
-    if (password !== investigation) {
+    if (password != investigation) {
       toast.error("Parollar bir xil emas !!!");
     } else {
       toast.success("Tasdiqlandi...");
@@ -54,6 +62,7 @@ function Register() {
       {/*  */}
 
       <Form
+        onSubmit={handleButtonClick}
         action="/register"
         method="post"
         className="bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-lg max-w-sm w-full"
@@ -79,7 +88,6 @@ function Register() {
               className="grow"
               placeholder="Username"
               name="displayName"
-              // value={displayName}
             />
           </label>
 
@@ -156,12 +164,25 @@ function Register() {
               name="password"
             />
           </label>
-          <button
-            onClick={handleButtonClick}
-            className="btn btn-active w-full block  border-none mb-5"
-          >
-            Submit
-          </button>
+
+          <div className="flex justify-between">
+            <button
+              type="submit"
+              className="flex items-center btn btn-active px-9 z-10 mb-7"
+            >
+              <CiLogin />
+              Log In
+            </button>
+
+            <button
+              onClick={signupWithGoogle}
+              className="flex items-center btn btn-active px-9 z-10 mb-7"
+            >
+              <FaGoogle />
+              Google
+            </button>
+          </div>
+
           <p className="text-white">
             I have account /{" "}
             <Link className="btn-link" to="/login">

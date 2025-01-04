@@ -13,7 +13,7 @@ import MainLayout from "./Layout/MainLayout";
 
 // pages
 import {
-  Info,
+  Create,
   Cart,
   Contact,
   Home,
@@ -51,8 +51,8 @@ function App() {
           element: <Product />,
         },
         {
-          path: "/info",
-          element: <Info />,
+          path: "/create",
+          element: <Create />,
         },
         {
           path: "/cart",

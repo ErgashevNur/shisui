@@ -3,7 +3,7 @@ import { auth } from "../firebase/firebaseConfig";
 import { signOut } from "firebase/auth";
 
 export const useSignout = () => {
-  const logout = () => {
+  const userSignout = () => {
     signOut(auth)
       .then(() => {
         toast.success("See you soon :)");
@@ -12,5 +12,5 @@ export const useSignout = () => {
         toast.error(error.message);
       });
   };
-  return { logout };
+  return { userSignout };
 };

@@ -33,7 +33,7 @@ function Login() {
     if (password.length < 6) {
       toast.warn("Parol 6 xonalik bo'lishi kerak");
     } else {
-      toast.success("Tasdiqlandi ,  Tizimka kirish...");
+      toast.success("Tasdiqlandi....");
     }
   };
 
@@ -41,6 +41,7 @@ function Login() {
     <div className="h-screen grid place-items-center bg-[url('https://images5.alphacoders.com/135/thumb-1920-1350706.jpeg')] bg-cover bg-center">
       {/*  */}
       <Form
+        onSubmit={handleButtonClick}
         action=""
         method="post"
         className="bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-lg max-w-sm w-full"
@@ -94,12 +95,10 @@ function Login() {
             name="password"
           />
         </label>
-        <button
-          onClick={handleButtonClick}
-          className="btn btn-active w-full block z-10  mb-7"
-        >
+        <button type="submit" className="btn btn-active w-full block z-10 mb-7">
           Log In
         </button>
+
         <p className="text-black">
           I don't have account /{" "}
           <Link to="/register" className="btn-link">

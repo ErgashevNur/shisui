@@ -8,12 +8,11 @@ function MainLayout() {
   return (
     <div className="flex justify-between">
       <Sidebar />
-      <main className="bg-white w-full p-10">
+      <main className="bg-slate-9000 w-full">
         <Outlet />
       </main>
       <OnlineUsers />
     </div>
   );
 }
-
 export default MainLayout;

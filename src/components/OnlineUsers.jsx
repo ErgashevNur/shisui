@@ -1,7 +1,32 @@
-import React from "react";
+import { useSelector } from "react-redux";
 
 function OnlineUsers() {
-  return <div className="bg-slate-600 w-[200px]  p p-10">OnlineUsers</div>;
+  const { user } = useSelector((store) => store.user);
+  return (
+    <>
+      <div className="py-8 pl-6 pr-14 bg-slate-900">
+        <div className="avatar online">
+          <div className="w-24 rounded-full">
+            <img
+              className="w-24 mx-auto rounded-full bg-red-800"
+              src={user.photoURL}
+              alt=""
+            />
+          </div>
+        </div>
+
+        <div className="avatar offline">
+          <div className="w-24 rounded-full">
+            <img
+              className="w-24 mx-auto rounded-full bg-red-800"
+              src={user.photoURL}
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default OnlineUsers;
