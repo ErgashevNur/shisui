@@ -3,8 +3,8 @@ import { Form, Link, useActionData } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useRegister } from "../hooks/useRegister";
 import { FaGoogle } from "react-icons/fa";
-import { useSignup } from "../hooks/useSignup";
 import { CiLogin } from "react-icons/ci";
+import { useSignup } from "../hooks/useSignup";
 
 export const action = async ({ request }) => {
   const form = await request.formData();

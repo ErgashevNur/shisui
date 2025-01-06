@@ -1,8 +1,10 @@
-import { useContext, useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSignup } from "../hooks/useSignup";
 import { Form, Link, useActionData } from "react-router";
 import { toast } from "react-toastify";
-import { useRegister } from "../hooks/useRegister";
+import { useLogin } from "../hooks/useLogin";
+import { FaGoogle } from "react-icons/fa";
+import { CiLogin } from "react-icons/ci";
 
 // Inputdan ma'lumot qilamiz
 export const action = async ({ request }) => {
@@ -16,11 +18,11 @@ function Login() {
   const { signupWithGoogle } = useSignup();
   const [password, setPassword] = useState("");
 
-  const { registerWithEmailAndPassword } = useRegister();
+  const { loginWithEmailAndPassword } = useLogin();
   const data = useActionData();
   useEffect(() => {
     if (data) {
-      registerWithEmailAndPassword(data.displayName, data.email, data.password);
+      loginWithEmailAndPassword(data.email, data.password);
     }
   }, [data]);
 
@@ -95,9 +97,23 @@ function Login() {
             name="password"
           />
         </label>
-        <button type="submit" className="btn btn-active w-full block z-10 mb-7">
-          Log In
-        </button>
+        <div className="flex justify-between">
+          <button
+            type="submit"
+            className="flex items-center btn btn-active px-9 z-10 mb-7"
+          >
+            <CiLogin />
+            Log In
+          </button>
+
+          <button
+            onClick={signupWithGoogle}
+            className="flex items-center btn btn-active px-9 z-10 mb-7"
+          >
+            <FaGoogle />
+            Google
+          </button>
+        </div>
 
         <p className="text-black">
           I don't have account /{" "}

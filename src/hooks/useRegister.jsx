@@ -5,6 +5,7 @@ import { v4 as uuid } from "uuid";
 
 import { useDispatch } from "react-redux";
 import { login } from "../app/features/userSlice";
+import toast from "react-hot-toast";
 
 export function useRegister() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ export function useRegister() {
         dispatch(login(profile.user));
       })
       .catch((error) => {
+        toast.error("Bu emaildan allaqachon ishlatilgan");
         console.log(error.message);
       });
   };
