@@ -7,7 +7,7 @@ function Avatar({ user }) {
           src={user.photoURL}
           alt=""
         />
-        <p className="text-black text-xl">Hi {user.displayName}</p>
+        <p className="text-black text-xl text-center">Hi {user.displayName}</p>
       </div>
     </>
   );

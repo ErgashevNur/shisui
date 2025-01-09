@@ -11,16 +11,19 @@ export function useRegister() {
   const dispatch = useDispatch();
   const registerWithEmailAndPassword = (displayName, email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
-      .then(async (profile) => {
-        await updateProfile(auth.currentUser, {
+      .then((profile) => {
+        updateProfile(auth.currentUser, {
           displayName: displayName,
           photoURL:
             "https://api.dicebear.com/9.x/adventurer/svg?seed=" + uuid(),
         });
         dispatch(login(profile.user));
+        toast.success(`Welcome ${profile.user}`);
       })
       .catch((error) => {
-        toast.error("Bu emaildan allaqachon ishlatilgan");
+        console.log(error);
+
+        toast.error("Bu email allaqachon ishlatilgan");
         console.log(error.message);
       });
   };

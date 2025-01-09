@@ -1,18 +1,16 @@
 import { useState } from "react";
 import { Form, Link, useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import Select from "react-dropdown-select";
+import makeAnimated from "react-select/animated";
 
 function Create() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [data, setData] = useState("");
+  const [selectedOptions, setSelectedOptions] = useState("");
 
   const navigate = useNavigate();
-
-  console.log(name);
-  console.log(description);
-  console.log(data);
-  console.log(" ");
 
   const handleInputValue = (e) => {
     const newName = e.target.value;
@@ -40,6 +38,23 @@ function Create() {
       navigate("/", { state: { name, description, data } });
     }
   };
+
+  const options = [
+    { label: "FrontEnd", value: 1 },
+    { label: "BackEnd", value: 2 },
+    { label: "FullStack", value: 3 },
+    { label: "Graphic Design", value: 4 },
+    { label: "SMM", value: 5 },
+  ];
+  const animatedComponents = makeAnimated();
+
+  const handleChange = (selected) => {
+    setSelectedOptions(selected);
+    console.log(selected);
+  };
+  console.log(data);
+  console.log(description);
+  console.log(name);
 
   return (
     <div className="gap-3 flex flex-col w-[400px] px-4 py-6">
@@ -90,6 +105,15 @@ function Create() {
             onChange={handleInputValue3}
           />
         </label>
+
+        <Select
+          closeMenuOnSelect={false}
+          components={animatedComponents}
+          multi
+          options={options}
+          className="mt-10"
+          onChange={handleChange}
+        />
 
         <div>
           <button type="submit" className="btn btn-active w-full block mt-5">
